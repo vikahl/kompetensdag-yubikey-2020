@@ -25,10 +25,13 @@
 \begin{document}
 \maketitle
 
-% {
-% \metroset{sectionpage=none}
-% \section*{Introduktion}
-% }
+\begin{frame}{Målbild}
+  \begin{itemize}
+    \item Inga nycklar på datorn
+    \item Möjlighet att ta med nycklarna
+    \item Möjliggör lättare backup, skriptad installation, …
+  \end{itemize}
+\end{frame}
 
 \begin{frame}{Open PGP nycklar}
   \begin{itemize}
@@ -43,53 +46,71 @@
         \item Används för signering, kryptering och/eller authentisering
         \item Nycklarna som används vardagligen
       \end{itemize}
+    \item Nycklar kan genereras på Yubiken eller tas in
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Konfigurera Yubikeyn}
   \begin{itemize}
     \item Konfigurera med Yubikey manager (ykman)
-    \item Stäng av OTP \mintinline{shell}{$ ykman config usb --disable OTP}
-    \item Aktivera touch \mintinline{shell}{$ ykman openpgp set-touch aut on}
-    \item Byt pin \mintinline{shell}{$ gpg --change-pin}
+    \item Stäng av OTP\\
+      \mintinline{shell}{$ ykman config usb --disable OTP}
+    \item Aktivera touch\\
+      \mintinline{shell}{$ ykman openpgp set-touch aut on}
+    \item Byt pin\\
+      \mintinline{shell}{$ gpg --change-pin}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Generera nycklar}
-  \begin{itemize}
-    \item Generera på Yubikey eller ta med nyckel in
-    \item \emph{Byt nyckellängd/nyckeltyp}
-    \item Generera nycklar
-  \end{itemize}
-
-  \begin{minted}[autogobble, fontsize=\small]{shell}
-    $ gpg --card-edit
-    Reader ...........: 1050:0406:X:0
-    …
-    gpg/card> admin
-    …
-    gpg/card> key-attr
-    …
-    gpg/card> generate
-  \end{minted}
+  \begin{columns}
+    \begin{column}{0.6\linewidth}
+      \begin{itemize}
+        \item Generera på Yubikey eller för in nyckel\\
+          {\small\emph{Omöjligt (?) att föra ut privat nyckel}}
+        \item Generera nycklar\\
+          \texttt{generate}
+        \item Om intresse: byt nyckeltyp/längd\\
+          \texttt{key-attr}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.4\linewidth}
+      \begin{minted}[autogobble, fontsize=\small]{shell}
+        $ gpg --card-edit
+        Reader ...........: 1050:04
+        …
+        gpg/card> admin
+        …
+        gpg/card> key-attr
+        …
+        gpg/card> generate
+      \end{minted}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{För SSH: GPG agent}
   \begin{itemize}
-    \item GPG agenten hanterar nycklarna
+    \item GPG agenten för SSH agenten
     \item \emph{pinentry} program för att mata in pinkoden
     \item \mintinline{shell}{$ ssh-add -L} bör visa en \texttt{cardno:}-nyckel
     \item Ladda upp på Github (eller motsv)
+    \item Testa med \mintinline{shell}{$ ssh -v git@github.com}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Signera commits i Git}
   \begin{itemize}
-    \item Lista kända nycklar \mintinline{shell}{$ gpg --list-secret-keys --keyid-format LONG}
-    \item Exportera publika nyckeln \mintinline{shell}{$ gpg --armor --export KEYID}
+    \item Lista kända nycklar\\
+      \mintinline{shell}{$ gpg --list-secret-keys --keyid-format LONG}
+    \item Exportera publika nyckeln\\
+      \mintinline{shell}{$ gpg --armor --export KEYID}
     \item Ladda upp på Github (eller motsv)
-    \item Konfigurera git att använda en specifik nyckel \mintinline{shell}{$ git config --global user.signingkey KEYID}
-    \item Signera commits med \texttt{-S} och taggar med \texttt{-s}
+    \item Konfigurera git att använda en specifik nyckel\\
+      \mintinline{shell}{$ git config --global user.signingkey KEYID}
+    \item Signera commits med \texttt{-S} och taggar med \texttt{-s}\\
+      \mintinline{shell}{$ $ git commit -S -a -v}\\
+      \mintinline{shell}{$ git tag -a '1.0.0' -m 'First release' -s}
   \end{itemize}
 \end{frame}
 
@@ -102,18 +123,6 @@
     \item ixdy (tillägg till florin) https://gist.github.com/ixdy/6fdd1ecea5d17479a6b4dab4fe1c17eb
   \end{itemize}
 \end{frame}
-
-% \begin{frame}{}
-%   \begin{itemize}
-%     \item
-%   \end{itemize}
-% \end{frame}
-
-% \begin{frame}{}
-%   \begin{itemize}
-%     \item
-%   \end{itemize}
-% \end{frame}
 
 % \begin{frame}{}
 %   \begin{itemize}
