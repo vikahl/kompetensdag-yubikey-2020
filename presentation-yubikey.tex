@@ -46,7 +46,7 @@
         \item Används för signering, kryptering och/eller authentisering
         \item Nycklarna som används vardagligen
       \end{itemize}
-    \item Nycklar kan genereras på Yubiken eller tas in
+    \item Nycklar kan genereras på Yubikeyn eller tas in
   \end{itemize}
 \end{frame}
 
@@ -108,7 +108,7 @@
     \item Konfigurera git att använda en specifik nyckel\\
       \mintinline{shell}{$ git config --global user.signingkey KEYID}
     \item Signera commits med \texttt{-S} och taggar med \texttt{-s}\\
-      \mintinline{shell}{$ $ git commit -S -a -v}\\
+      \mintinline{shell}{$ git commit -S -a -v}\\
       \mintinline{shell}{$ git tag -a '1.0.0' -m 'First release' -s}
   \end{itemize}
 \end{frame}
