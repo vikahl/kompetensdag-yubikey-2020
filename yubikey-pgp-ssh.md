@@ -104,9 +104,15 @@ all encrypt/decrypt/sign based on the same master.
 
 ## Instructions for Mac OS
 
-1. Install GnuPG cli `brew install gpg`
+1. Install GnuPG cli
+```shell
+brew install gpg
+```
 2. Generate new keys on the Yubikey _(see section below)_
-3. Install pinentry-mac, `brew install pinentry-mac`
+3. Install pinentry-mac
+```shell
+brew install pinentry-mac
+```
 4. Add a `~/.gnupg/gpg-agent.conf` file to get pin entry to work  
   ```shell
   $ echo "pinentry-program $(which pinentry)
