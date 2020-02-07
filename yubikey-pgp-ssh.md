@@ -81,13 +81,21 @@ all encrypt/decrypt/sign based on the same master.
   ```
 
 2. Generate new keys on the Yubikey _(see section below)_
-3. Download [drduhs configuration for gpg-agent][drduh]
+3. Download [drduhs configuration for gpg-agent][drduh-cc]
   ```shell
   $ cd ~/.gnupg
   $ wget https://raw.githubusercontent.com/drduh/config/master/gpg-agent.conf
   ```
+4. Replace the SSH key agent, add these lines to the shell rc file (`~/.bashrc`
+   or similar) (for older systems, see [drduhs instructions][drduh-ra])
 
-4. (Optional) Enable touch with _ykman_
+  ```shell
+  export GPG_TTY="$(tty)"
+  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  gpgconf --launch gpg-agent
+  ```
+
+5. (Optional) Enable touch with _ykman_
   ```shell
   $ ykman openpgp set-touch aut on      # for authentication
   $ ykman openpgp set-touch sig on      # for signing
@@ -167,3 +175,5 @@ $ git tag -a '1.0.0' -m 'First release' -s
 [florin]: https://florin.myip.org/blog/easy-multifactor-authentication-ssh-using-yubikey-neo-tokens
 [ixdy]: https://gist.github.com/ixdy/6fdd1ecea5d17479a6b4dab4fe1c17eb
 [drduh]: https://github.com/drduh/YubiKey-Guide/
+[drduh-ra]: https://github.com/drduh/YubiKey-Guide/#replace-agents
+[drduh-cc]: https://github.com/drduh/YubiKey-Guide/#create-configuration
