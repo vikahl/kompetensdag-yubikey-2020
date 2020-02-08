@@ -59,17 +59,17 @@ To disable the OTP on touch, run `ykman config usb --disable OTP`
 
 ## Generate keys on Yubikey or on computer
 
-_Advanced section if they keys are used for encryption/decryption and not just
+_Advanced section if the keys are used for encryption/decryption and not just
 signing._
 
 Keys can be generated on the Yubikey or on the computer. Advantage of using the
 computer is that the master key can be saved on an USB drive and be accessable
 to generate new subkeys, while keys can never be retrieved from the Yubikey. If
-the key is generated on the Yubikey and used to encrypt something that data
+the key is generated on the Yubikey and used to encrypt something, that data
 cannot be decrypted if the Yubikey is stolen or lost.
 
 When using multiple Yubikeys, if the master key is generated on the computer,
-the same master can be used for multiple Yubikey subkeys meaning that they can
+the same master key can be used for multiple Yubikey subkeys meaning that they can
 all encrypt/decrypt/sign based on the same master.
 
 ## Instructions for Debian/Linux
