@@ -131,8 +131,9 @@ default-cache-ttl 60
 max-cache-ttl 120
 " > ~/.gnupg/gpg-agent.conf
 ```
-5. Make sure that GPG agent is started properly, edit `~/.bash_profile`  
+5. Make sure that GPG agent is started properly, edit `~/.bash_profile` (bash) or `~/.zlogin` (zsh)
 ```no-highlight
+# Yubikey
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
