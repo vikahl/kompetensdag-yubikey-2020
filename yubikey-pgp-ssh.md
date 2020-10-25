@@ -38,6 +38,16 @@ Open PGP denotes keys as
 Keys can be listed with `gpg --list-secret-keys`. Keys that exists only on the
 Yubikey will be noted with a `>` afterwards, i.e. `sec>`.
 
+The keys are also noted with usage as:
+
+    E = encryption
+    S = signing
+    C = certification
+    A = authentication
+
+These can be combined so a `SC` means a key that can be used both for signing and
+certification.
+
 
 ## Configure the Yubikey itself
 
